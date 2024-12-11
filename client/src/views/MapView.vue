@@ -1,37 +1,46 @@
 <script setup lang="ts">
 import { Circle } from 'vue3-google-map';
-import { onMounted, ref } from 'vue';
+import { onMounted } from 'vue';
 import GoogleMapWrapper from '@/components/map/GoogleMapWrapper.vue';
 import { useHotPlaceStore } from '@/stores/hotPlace';
 import { useSupplyCenterStore } from '@/stores/supplyCenter';
+import { useMapStore } from '@/stores/map';
+import SelectedHotPlaceMenu from '@/components/map/SelectedHotPlaceMenu.vue';
+import SelectedSupplyCenterMenu from '@/components/map/SelectedSupplyCenterMenu.vue';
 
-const hotPlaceStore = useHotPlaceStore()
-const supplyCenterStore = useSupplyCenterStore()
+const hotPlaceStore = useHotPlaceStore();
+const supplyCenterStore = useSupplyCenterStore();
+const mapStore = useMapStore();
 
-const currentHover = ref<string | null>(null);
-
-function handleMouseOver(index: number) {
-  currentHover.value = hotPlaceStore.hotPlaces[index].name;
-}
-
-function handleMouseOut() {
-  currentHover.value = null;
-}
-
-function handleClick(index: number) {
-  console.log('handleClick');
-  console.log(hotPlaceStore.hotPlaces[index]);
+function handleClick(index: number, type: 'HOT_PLACE' | 'SUPPLY_CENTER') {
+  ({ index, type });
 }
 
 onMounted(() => {
-  hotPlaceStore.init()
-  supplyCenterStore.init()
-})
+  hotPlaceStore.init();
+  supplyCenterStore.init();
+});
+
+function getCircleOptions(location: { longitude: number; latitude: number }, color: string,
+) {
+  return {
+    center: {
+      lng: location.longitude,
+      lat: location.latitude,
+    },
+    radius: 12000,
+    strokeOpacity: 0.8,
+    strokeWeight: 2,
+    fillOpacity: 0.35,
+    strokeColor: color,
+    fillColor: color,
+  };
+}
 
 </script>
 
 <template>
-  <div>
+  <div class="flex h-full gap-5">
     <GoogleMapWrapper>
       <!--    <Marker-->
       <!--      v-for="({title, lng, lat}, i) in hotPlaces"-->
@@ -41,40 +50,18 @@ onMounted(() => {
       <Circle
         v-for="({location}, i) in hotPlaceStore.hotPlaces"
         :key="i"
-        :options="{
-          center: {lng: location.longitude, lat: location.latitude},
-          radius: 12000,
-          strokeColor: '#FF0000',
-          strokeOpacity: 0.8,
-          strokeWeight: 2,
-          fillColor: '#FF0000',
-          fillOpacity: 0.35,
-        }"
-        @mouseover="handleMouseOver(i)"
-        @mouseout="handleMouseOut"
-        @click="handleClick(i)"
+        :options="getCircleOptions(location, '#FF0000')"
+        @click="mapStore.setCurrentSelected({index: i, type: 'HOT_PLACE'})"
       />
 
       <Circle
         v-for="({location}, i) in supplyCenterStore.supplyCenter"
         :key="i"
-        :options="{
-       center: {lng: location.longitude, lat: location.latitude},
-          radius: 12000,
-          strokeColor: '#3098ff',
-          strokeOpacity: 0.8,
-          strokeWeight: 2,
-          fillColor: '#3098ff',
-          fillOpacity: 0.35,
-        }"
-        @mouseover="handleMouseOver(i)"
-        @mouseout="handleMouseOut"
-        @click="handleClick(i)"
+        :options="getCircleOptions(location, '#3098ff')"
+        @click="mapStore.setCurrentSelected({index: i, type: 'SUPPLY_CENTER'})"
       />
     </GoogleMapWrapper>
-
-    <div>
-      {{ currentHover }}
-    </div>
+    <SelectedHotPlaceMenu v-if="mapStore.currentSelected?.type === 'HOT_PLACE'" />
+    <SelectedSupplyCenterMenu v-if="mapStore.currentSelected?.type === 'SUPPLY_CENTER'" />
   </div>
 </template>

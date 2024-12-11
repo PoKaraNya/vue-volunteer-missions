@@ -4,7 +4,7 @@ import Header from '@/components/Header.vue';
 <template>
   <main class="h-screen flex flex-col">
     <Header />
-    <div class="h-full overflow-y-hidden [&>div]:h-full">
+    <div class="h-full overflow-y-hidden">
       <RouterView />
     </div>
   </main>

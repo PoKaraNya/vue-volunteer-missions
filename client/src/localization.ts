@@ -12,6 +12,14 @@ export const messages = {
       login: 'Login',
       logout: 'Logout',
     },
+    hotPlace: {
+      title: 'Hot place',
+      exit: 'Exit',
+    },
+    supplyCenter: {
+      title: 'Supply center',
+      exit: 'Exit',
+    }
   },
   ua: {
     auth: {
@@ -26,5 +34,13 @@ export const messages = {
       login: 'Увійти',
       logout: 'Вийти',
     },
+    hotPlace: {
+      title: 'Зона бойових дій',
+      exit: 'Вихід',
+    },
+    supplyCenter: {
+      title: 'Центр постачання',
+      exit: 'Вихід',
+    }
   },
 };

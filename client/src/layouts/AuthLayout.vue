@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import Toast from 'primevue/toast';
 </script>
 <template>
   <main class="h-screen w-screen flex items-center justify-center">
@@ -6,4 +7,5 @@
       <RouterView />
     </div>
   </main>
+  <Toast/>
 </template>

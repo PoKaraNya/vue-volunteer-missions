@@ -35,6 +35,7 @@ const onSubmit = handleSubmit(async ({ email, password }) => {
     await router.push('/')
   } catch (error) {
     if (error instanceof AxiosError) {
+      console.log('TOAST');
       toast.add({
         severity: 'error',
         summary: error.response?.data.message,
