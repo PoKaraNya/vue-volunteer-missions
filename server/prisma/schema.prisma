@@ -28,3 +28,43 @@ model User {
   updatedAt DateTime  @updatedAt
   articles  Article[]
 }
+
+model Location {
+  id           Int           @id @default(autoincrement())
+  latitude     Float
+  longitude    Float
+  hotPlace     HotPlace?
+  supplyCenter SupplyCenter?
+}
+
+model HotPlace {
+  id         Int      @id @default(autoincrement())
+  name       String
+  location   Location @relation(fields: [locationId], references: [id])
+  locationId Int      @unique
+}
+
+model SupplyCenter {
+  id         Int                    @id @default(autoincrement())
+  name       String
+  location   Location               @relation(fields: [locationId], references: [id])
+  locationId Int                    @unique
+  products   SupplyCenterProducts[]
+}
+
+model Product {
+  id           Int                    @id @default(autoincrement())
+  name         String
+  description  String?
+  price        Float
+  supplyCenter SupplyCenterProducts[]
+}
+
+model SupplyCenterProducts {
+  id             Int          @id @default(autoincrement())
+  productId      Int
+  product        Product      @relation(fields: [productId], references: [id])
+  count          Int
+  supplyCenterId Int
+  supplyCenter   SupplyCenter @relation(fields: [supplyCenterId], references: [id])
+}

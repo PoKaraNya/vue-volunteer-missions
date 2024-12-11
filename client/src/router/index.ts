@@ -1,11 +1,14 @@
 import { createRouter, createWebHistory } from 'vue-router';
 
+const base = import.meta.env.BASE_URL;
+
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHistory(base),
   routes: [
     {
       path: '/auth',
       name: 'auth',
+      component: () => import('../layouts/AuthLayout.vue'),
       children: [
         {
           path: 'login',
@@ -25,7 +28,7 @@ const router = createRouter({
       component: () => import('../layouts/MapLayout.vue'),
       children: [
         {
-          path: '/',
+          path: '',
           name: 'map',
           component: () => import('../views/MapView.vue'),
         },

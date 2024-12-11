@@ -1,14 +1,17 @@
 <script setup lang="ts">
 import { Circle } from 'vue3-google-map';
-import { ref } from 'vue';
-import { hotPlaces } from '@/data/hotCenters';
-import { supplyCenters } from '@/data/supplyCenters';
+import { onMounted, ref } from 'vue';
 import GoogleMapWrapper from '@/components/map/GoogleMapWrapper.vue';
+import { useHotPlaceStore } from '@/stores/hotPlace';
+import { useSupplyCenterStore } from '@/stores/supplyCenter';
+
+const hotPlaceStore = useHotPlaceStore()
+const supplyCenterStore = useSupplyCenterStore()
 
 const currentHover = ref<string | null>(null);
 
 function handleMouseOver(index: number) {
-  currentHover.value = hotPlaces[index].info.title;
+  currentHover.value = hotPlaceStore.hotPlaces[index].name;
 }
 
 function handleMouseOut() {
@@ -17,9 +20,13 @@ function handleMouseOut() {
 
 function handleClick(index: number) {
   console.log('handleClick');
-  console.log(hotPlaces[index]);
+  console.log(hotPlaceStore.hotPlaces[index]);
 }
 
+onMounted(() => {
+  hotPlaceStore.init()
+  supplyCenterStore.init()
+})
 
 </script>
 
@@ -32,11 +39,11 @@ function handleClick(index: number) {
       <!--      :options="{ position: {lng, lat}, title }"-->
       <!--    />-->
       <Circle
-        v-for="({lng, lat}, i) in hotPlaces"
+        v-for="({location}, i) in hotPlaceStore.hotPlaces"
         :key="i"
         :options="{
-          center: {lng, lat},
-          radius: 15000,
+          center: {lng: location.longitude, lat: location.latitude},
+          radius: 12000,
           strokeColor: '#FF0000',
           strokeOpacity: 0.8,
           strokeWeight: 2,
@@ -49,11 +56,11 @@ function handleClick(index: number) {
       />
 
       <Circle
-        v-for="({lng, lat}, i) in supplyCenters"
+        v-for="({location}, i) in supplyCenterStore.supplyCenter"
         :key="i"
         :options="{
-          center: {lng, lat},
-          radius: 15000,
+       center: {lng: location.longitude, lat: location.latitude},
+          radius: 12000,
           strokeColor: '#3098ff',
           strokeOpacity: 0.8,
           strokeWeight: 2,

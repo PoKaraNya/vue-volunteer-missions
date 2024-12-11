@@ -8,7 +8,8 @@ const googleApiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
 <template>
   <GoogleMap
     :api-key="googleApiKey"
-    style="width: 100%; height: 700px"
+    style="width: 100%; height: 100%"
+    class="h-screen"
     :center="center"
     :zoom="7"
     :min-zoom="7"
