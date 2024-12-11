@@ -47,11 +47,11 @@ const onSubmit = handleSubmit(async ({ email, password }) => {
 
 <template>
   <div>
-    <h1 class="text-center">Login</h1>
+    <h1 class="text-center">{{$t('auth.login')}}</h1>
     <div>
       <form @submit="onSubmit">
         <div>
-          <label class="block mt-5 mb-1" for="email">Email</label>
+          <label class="block mt-5 mb-1" for="email">{{$t('auth.email')}}</label>
           <InputText
             v-model="email"
             aria-describedby="email-help"
@@ -62,7 +62,7 @@ const onSubmit = handleSubmit(async ({ email, password }) => {
         </div>
 
         <div>
-          <label class="block mt-5 mb-1" for="password">Password</label>
+          <label class="block mt-5 mb-1" for="password">{{$t('auth.password')}}</label>
           <InputText
             v-model="password"
             aria-describedby="password-help"
@@ -72,7 +72,7 @@ const onSubmit = handleSubmit(async ({ email, password }) => {
           <small id="password-help" class="block">{{ errors.password }}</small>
         </div>
 
-        <Button type="submit" class="mt-5">Submit</Button>
+        <Button type="submit" class="mt-5">{{$t('auth.submit')}}</Button>
       </form>
     </div>
   </div>

@@ -10,17 +10,16 @@ function handleLogout() {
   router.push('/auth/login');
 }
 
-
 </script>
 <template>
   <nav class="flex justify-between p-4">
     <div>
     </div>
     <button @click="handleLogout" v-if="isLoggedIn">
-      Logout
+      {{ $t('header.logout') }}
     </button>
-    <RouterLink to="" v-else>
-      Login
+    <RouterLink to="/auth/login" v-else>
+      {{ $t('header.login') }}
     </RouterLink>
   </nav>
 </template>
