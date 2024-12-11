@@ -19,6 +19,8 @@ export const messages = {
     supplyCenter: {
       title: 'Supply center',
       exit: 'Exit',
+      products: 'Products',
+      quantity: 'Quantity',
     }
   },
   ua: {
@@ -41,6 +43,8 @@ export const messages = {
     supplyCenter: {
       title: 'Центр постачання',
       exit: 'Вихід',
+      products: 'Товари',
+      quantity: 'Кількість',
     }
   },
 };

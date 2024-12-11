@@ -16,6 +16,12 @@ export class SupplyCenterService {
             latitude: true,
             longitude: true,
           }
+        },
+        products: {
+          select: {
+            product: true,
+            count: true
+          }
         }
       }
     });

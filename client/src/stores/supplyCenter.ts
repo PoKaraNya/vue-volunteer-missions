@@ -2,12 +2,23 @@ import { defineStore } from 'pinia';
 import { ref } from 'vue';
 import { api } from '@/lib/axios';
 
+type Product = {
+  count: number
+  product: {
+    id: number
+    name: string
+    description: number
+    price: number
+  }
+}
+
 type SupplyCenter = {
   name: string
   location: {
     latitude: number
     longitude: number
   }
+  products: Product[]
 }
 
 export const useSupplyCenterStore = defineStore('supply-center', () => {

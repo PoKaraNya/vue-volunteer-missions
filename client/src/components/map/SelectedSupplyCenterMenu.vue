@@ -24,5 +24,13 @@ const current = computed(() => {
     <div>
       {{ current && current?.name }}
     </div>
+    <div v-if="current" class="flex flex-col gap-2">
+      {{$t('supplyCenter.products')}}:
+      <div v-for="{product, count} of current.products">
+        {{ product.name }} | {{$t('supplyCenter.quantity')}}: {{ count }}
+        <hr>
+        {{product.description}}
+      </div>
+    </div>
   </div>
 </template>
