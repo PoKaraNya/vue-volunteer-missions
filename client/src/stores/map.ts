@@ -10,7 +10,6 @@ export const useMapStore = defineStore('map', () => {
   const currentSelected = ref<CurrentSelected | null>(null);
 
   function setCurrentSelected(value: CurrentSelected) {
-    console.log({value});
     currentSelected.value = value;
   }
 

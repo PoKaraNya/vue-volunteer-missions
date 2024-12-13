@@ -12,10 +12,6 @@ const hotPlaceStore = useHotPlaceStore();
 const supplyCenterStore = useSupplyCenterStore();
 const mapStore = useMapStore();
 
-function handleClick(index: number, type: 'HOT_PLACE' | 'SUPPLY_CENTER') {
-  ({ index, type });
-}
-
 onMounted(() => {
   hotPlaceStore.init();
   supplyCenterStore.init();
@@ -42,11 +38,6 @@ function getCircleOptions(location: { longitude: number; latitude: number }, col
 <template>
   <div class="flex h-full gap-5">
     <GoogleMapWrapper>
-      <!--    <Marker-->
-      <!--      v-for="({title, lng, lat}, i) in hotPlaces"-->
-      <!--      :key="i"-->
-      <!--      :options="{ position: {lng, lat}, title }"-->
-      <!--    />-->
       <Circle
         v-for="({location}, i) in hotPlaceStore.hotPlaces"
         :key="i"
