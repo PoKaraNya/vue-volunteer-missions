@@ -18,7 +18,7 @@ const current = computed(() => {
         {{ $t('hotPlace.title')}}
       </h2>
       <button @click="mapStore.clearCurrentSelected">
-        {{ $t('supplyCenter.exit')}}
+        <i class="pi pi-times" />
       </button>
     </div>
     <div>

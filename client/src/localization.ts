@@ -11,6 +11,8 @@ export const messages = {
     header: {
       login: 'Login',
       logout: 'Logout',
+      map: 'Map',
+      supplyCenters: 'Supply centers',
     },
     hotPlace: {
       title: 'Hot place',
@@ -35,6 +37,8 @@ export const messages = {
     header: {
       login: 'Увійти',
       logout: 'Вийти',
+      map: 'Карта',
+      supplyCenters: 'Центри постачання',
     },
     hotPlace: {
       title: 'Зона бойових дій',

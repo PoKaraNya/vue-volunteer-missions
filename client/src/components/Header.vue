@@ -13,7 +13,13 @@ function handleLogout() {
 </script>
 <template>
   <nav class="flex justify-between p-4">
-    <div>
+    <div class="flex gap-8">
+      <RouterLink to="/">
+        {{ $t('header.map') }}
+      </RouterLink>
+      <RouterLink to="/supply-centers">
+        {{ $t('header.supplyCenters') }}
+      </RouterLink>
     </div>
     <button @click="handleLogout" v-if="isLoggedIn">
       {{ $t('header.logout') }}

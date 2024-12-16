@@ -6,7 +6,7 @@ export class SupplyCenterService {
   constructor(private prisma: PrismaService) {
   }
 
-  async findAll() {
+  findAll() {
     return this.prisma.supplyCenter.findMany({
       select: {
         id: true,
@@ -15,15 +15,37 @@ export class SupplyCenterService {
           select: {
             latitude: true,
             longitude: true,
-          }
+          },
         },
         products: {
           select: {
             product: true,
-            count: true
-          }
-        }
-      }
+            count: true,
+          },
+        },
+      },
+    });
+  }
+
+  create(name: string, latitude: number, longitude: number) {
+    return this.prisma.supplyCenter.create({
+      data: {
+        name,
+        location: {
+          create: {
+            latitude,
+            longitude,
+          },
+        },
+      },
+    });
+  }
+
+  deleteOne(id: number) {
+    return this.prisma.supplyCenter.delete({
+      where: {
+        id,
+      },
     });
   }
 }

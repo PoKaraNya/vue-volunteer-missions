@@ -24,14 +24,19 @@ const router = createRouter({
     },
     {
       path: '/',
-      name: 'map',
-      component: () => import('../layouts/MapLayout.vue'),
+      name: 'home',
+      component: () => import('../layouts/HomeLayout.vue'),
       children: [
         {
           path: '',
           name: 'map',
           component: () => import('../views/MapView.vue'),
         },
+        {
+          path: '/supply-centers',
+          name: 'supply-centers',
+          component: () => import('../views/SupplyCentersView.vue'),
+        }
       ],
     },
   ],
