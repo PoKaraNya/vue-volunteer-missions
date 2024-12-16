@@ -15,6 +15,7 @@ export const messages = {
       supplyCenters: 'Supply centers',
       hotPlaces: 'Hot places',
       products: 'Products',
+      missions: 'Missions',
     },
     hotPlace: {
       title: 'Hot place',
@@ -43,6 +44,7 @@ export const messages = {
       supplyCenters: 'Центри постачання',
       hotPlaces: 'Зони бойових дій',
       products: 'Товари',
+      missions: 'Місії',
     },
     hotPlace: {
       title: 'Зона бойових дій',

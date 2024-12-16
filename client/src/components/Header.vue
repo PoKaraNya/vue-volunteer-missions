@@ -26,6 +26,9 @@ function handleLogout() {
       <RouterLink to="/products">
         {{ $t('header.products') }}
       </RouterLink>
+      <RouterLink to="/missions">
+        {{ $t('header.missions') }}
+      </RouterLink>
     </div>
     <button @click="handleLogout" v-if="isLoggedIn">
       {{ $t('header.logout') }}

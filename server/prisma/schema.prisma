@@ -38,10 +38,11 @@ model Location {
 }
 
 model HotPlace {
-  id         Int      @id @default(autoincrement())
+  id         Int       @id @default(autoincrement())
   name       String
-  location   Location @relation(fields: [locationId], references: [id])
-  locationId Int      @unique
+  location   Location  @relation(fields: [locationId], references: [id])
+  locationId Int       @unique
+  missions   Mission[]
 }
 
 model SupplyCenter {
@@ -50,6 +51,7 @@ model SupplyCenter {
   location   Location               @relation(fields: [locationId], references: [id])
   locationId Int                    @unique
   products   SupplyCenterProducts[]
+  missions   Mission[]
 }
 
 model Product {
@@ -67,4 +69,27 @@ model SupplyCenterProducts {
   count          Int
   supplyCenterId Int
   supplyCenter   SupplyCenter @relation(fields: [supplyCenterId], references: [id])
+}
+
+enum MissionType {
+  Delivery
+  Resque
+}
+
+enum MissionStatus {
+  Pending
+  InProgress
+  Completed
+  Failed
+}
+
+model Mission {
+  id             Int           @id @default(autoincrement())
+  type           MissionType
+  status         MissionStatus
+  supplyCenterId Int
+  supplyCenter   SupplyCenter  @relation(fields: [supplyCenterId], references: [id])
+  hotPlaceId     Int
+  hotPlace       HotPlace      @relation(fields: [hotPlaceId], references: [id])
+  createdAt      DateTime      @default(now())
 }
