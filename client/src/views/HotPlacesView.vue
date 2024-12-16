@@ -55,7 +55,7 @@ async function handleDelete(id: number) {
           </span>
         </template>
       </Column>
-      <Column header="Longitude" bodyClass="text-center">
+      <Column header="" bodyClass="text-center">
         <template #body="slotProps">
           <Button @click="handleDelete(slotProps.data.id)">
             <i class="pi pi-trash"/>

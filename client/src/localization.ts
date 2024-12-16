@@ -14,6 +14,7 @@ export const messages = {
       map: 'Map',
       supplyCenters: 'Supply centers',
       hotPlaces: 'Hot places',
+      products: 'Products',
     },
     hotPlace: {
       title: 'Hot place',
@@ -41,6 +42,7 @@ export const messages = {
       map: 'Карта',
       supplyCenters: 'Центри постачання',
       hotPlaces: 'Зони бойових дій',
+      products: 'Товари',
     },
     hotPlace: {
       title: 'Зона бойових дій',

@@ -5,6 +5,7 @@ import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { SupplyCenterModule } from './supply-center/supply-center.module';
 import { HotPlaceModule } from './hot-place/hot-place.module';
+import { ProductsModule } from './products/products.module';
 
 @Module({
   imports: [
@@ -13,7 +14,8 @@ import { HotPlaceModule } from './hot-place/hot-place.module';
     UsersModule,
     AuthModule,
     SupplyCenterModule,
-    HotPlaceModule
+    HotPlaceModule,
+    ProductsModule
   ],
 })
 export class AppModule {
