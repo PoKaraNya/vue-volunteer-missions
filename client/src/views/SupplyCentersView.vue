@@ -3,6 +3,7 @@ import { onMounted, ref } from 'vue';
 import { useSupplyCenterStore } from '@/stores/supplyCenter';
 import AddSupplyCenterForm from '@/components/supply-centers/AddSupplyCenterForm.vue';
 import { DataTable, Dialog, Column, Button } from 'primevue';
+import { api } from '@/lib/axios';
 
 const store = useSupplyCenterStore()
 
@@ -11,8 +12,12 @@ onMounted(() => {
 })
 
 const visible = ref<boolean>(false)
-</script>
 
+async function handleDelete(id: number) {
+  await api.delete(`/supply-center/${id}`)
+  await store.init()
+}
+</script>
 <template>
   <main class="w-full flex flex-col gap-2">
     <Dialog
@@ -47,6 +52,13 @@ const visible = ref<boolean>(false)
           <span>
            {{slotProps.data.location.longitude}}
           </span>
+        </template>
+      </Column>
+      <Column header="Longitude" bodyClass="text-center">
+        <template #body="slotProps">
+          <Button @click="handleDelete(slotProps.data.id)">
+            <i class="pi pi-trash"/>
+          </Button>
         </template>
       </Column>
     </DataTable>

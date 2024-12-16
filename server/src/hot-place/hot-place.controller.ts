@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
 import { HotPlaceService } from './hot-place.service';
 
 @Controller('hot-place')
@@ -17,7 +17,7 @@ export class HotPlaceController {
   }
 
   @Delete(':id')
-  deleteOne(id: number) {
-    return this.hotPlaceService.deleteOne(id)
+  deleteOne(@Param('id') id: number) {
+    return this.hotPlaceService.deleteOne(+id)
   }
 }

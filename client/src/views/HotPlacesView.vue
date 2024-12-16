@@ -4,6 +4,7 @@ import AddSupplyCenterForm from '@/components/supply-centers/AddSupplyCenterForm
 import { Button, Column, DataTable, Dialog } from 'primevue';
 import { useHotPlaceStore } from '@/stores/hotPlace';
 import AddHotPlaceForm from '@/components/hot-places/AddHotPlaceForm.vue';
+import { api } from '@/lib/axios';
 
 const store = useHotPlaceStore();
 
@@ -12,8 +13,12 @@ onMounted(() => {
 });
 
 const visible = ref<boolean>(false);
-</script>
 
+async function handleDelete(id: number) {
+  await api.delete(`/hot-place/${id}`)
+  await store.init()
+}
+</script>
 <template>
   <main class="w-full flex flex-col gap-2 h-full overflow-y-auto">
     <Dialog
@@ -48,6 +53,13 @@ const visible = ref<boolean>(false);
           <span>
            {{ slotProps.data.location.longitude }}
           </span>
+        </template>
+      </Column>
+      <Column header="Longitude" bodyClass="text-center">
+        <template #body="slotProps">
+          <Button @click="handleDelete(slotProps.data.id)">
+            <i class="pi pi-trash"/>
+          </Button>
         </template>
       </Column>
     </DataTable>

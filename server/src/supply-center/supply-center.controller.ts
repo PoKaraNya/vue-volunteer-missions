@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
 import { SupplyCenterService } from './supply-center.service';
 
 @Controller('supply-center')
@@ -17,7 +17,7 @@ export class SupplyCenterController {
   }
 
   @Delete(':id')
-  deleteOne(id: number) {
-    return this.supplyCenterService.deleteOne(id)
+  deleteOne(@Param('id') id: number) {
+    return this.supplyCenterService.deleteOne(+id)
   }
 }
