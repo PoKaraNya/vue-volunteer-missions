@@ -7,14 +7,17 @@ import { useSupplyCenterStore } from '@/stores/supplyCenter';
 import { useMapStore } from '@/stores/map';
 import SelectedHotPlaceMenu from '@/components/map/SelectedHotPlaceMenu.vue';
 import SelectedSupplyCenterMenu from '@/components/map/SelectedSupplyCenterMenu.vue';
+import { useMissionsStore } from '@/stores/missions';
 
 const hotPlaceStore = useHotPlaceStore();
 const supplyCenterStore = useSupplyCenterStore();
+const missionsStore = useMissionsStore();
 const mapStore = useMapStore();
 
 onMounted(() => {
   hotPlaceStore.init();
   supplyCenterStore.init();
+  missionsStore.init();
 });
 
 function getCircleOptions(location: { longitude: number; latitude: number }, color: string,

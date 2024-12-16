@@ -3,6 +3,7 @@ import { ref } from 'vue';
 import { api } from '@/lib/axios';
 
 type HotPlace = {
+  id: number
   name: string
   location: {
     latitude: number

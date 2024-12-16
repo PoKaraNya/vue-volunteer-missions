@@ -10,5 +10,10 @@ export const useMissionsStore = defineStore('missions', () => {
     missions.value = data
   }
 
-  return {missions, init};
+  async function create(supplyCenterId: number, hotPlaceId: number, type: string) {
+    await api.post('/missions', {supplyCenterId, hotPlaceId, type})
+    await init()
+  }
+
+  return {missions, init, create};
 });

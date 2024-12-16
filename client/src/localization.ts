@@ -20,12 +20,18 @@ export const messages = {
     hotPlace: {
       title: 'Hot place',
       exit: 'Exit',
+      createResqueMission: 'Create resque mission',
+      chooseSupplyCenter: 'Choose supply center',
+      create: 'Create',
     },
     supplyCenter: {
       title: 'Supply center',
       exit: 'Exit',
       products: 'Products',
       quantity: 'Quantity',
+      createDeliveryMission: 'Create delivery mission',
+      chooseHotPlace: 'Choose hot place',
+      create: 'Create',
     }
   },
   ua: {
@@ -49,12 +55,18 @@ export const messages = {
     hotPlace: {
       title: 'Зона бойових дій',
       exit: 'Вихід',
+      createResqueMission: 'Створити місію рятування',
+      chooseSupplyCenter: 'Оберіть центр постачання',
+      create: 'Створити',
     },
     supplyCenter: {
       title: 'Центр постачання',
       exit: 'Вихід',
       products: 'Товари',
       quantity: 'Кількість',
+      createDeliveryMission: 'Створити місію постачання',
+      chooseHotPlace: 'Оберіть зону бойових дій',
+      create: 'Створити',
     }
   },
 };

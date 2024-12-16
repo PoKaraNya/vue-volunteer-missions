@@ -13,6 +13,7 @@ type Product = {
 }
 
 type SupplyCenter = {
+  id: number
   name: string
   location: {
     latitude: number
