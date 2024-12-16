@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Post } from '@nestjs/common';
 import { HotPlaceService } from './hot-place.service';
 
 @Controller('hot-place')
@@ -9,5 +9,15 @@ export class HotPlaceController {
   @Get()
   async findAll() {
     return this.hotPlaceService.findAll();
+  }
+
+  @Post()
+  create(@Body() body: { name: string, latitude: number, longitude: number }) {
+    return this.hotPlaceService.create(body.name, body.latitude, body.longitude)
+  }
+
+  @Delete(':id')
+  deleteOne(id: number) {
+    return this.hotPlaceService.deleteOne(id)
   }
 }

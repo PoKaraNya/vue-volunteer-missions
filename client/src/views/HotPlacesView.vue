@@ -1,35 +1,36 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
-import { useSupplyCenterStore } from '@/stores/supplyCenter';
 import AddSupplyCenterForm from '@/components/supply-centers/AddSupplyCenterForm.vue';
-import { DataTable, Dialog, Column, Button } from 'primevue';
+import { Button, Column, DataTable, Dialog } from 'primevue';
+import { useHotPlaceStore } from '@/stores/hotPlace';
+import AddHotPlaceForm from '@/components/hot-places/AddHotPlaceForm.vue';
 
-const store = useSupplyCenterStore()
+const store = useHotPlaceStore();
 
 onMounted(() => {
-  store.init()
-})
+  store.init();
+});
 
-const visible = ref<boolean>(false)
+const visible = ref<boolean>(false);
 </script>
 
 <template>
-  <main class="w-full flex flex-col gap-2">
+  <main class="w-full flex flex-col gap-2 h-full overflow-y-auto">
     <Dialog
       v-model:visible="visible"
       modal
-      header="Add Supply Center"
+      header="Add Hot Place"
       :style="{ width: '25rem' }"
     >
-      <AddSupplyCenterForm @hide="visible = false" @update-data="store.init()" />
+      <AddHotPlaceForm @hide="visible = false" @update-data="store.init()" />
     </Dialog>
 
     <h1>
-      Supply Centers
+      Hot places
     </h1>
     <DataTable
-      v-if="store.supplyCenter"
-      :value="store.supplyCenter"
+      v-if="store.hotPlaces"
+      :value="store.hotPlaces"
       class="w-full"
       size="large"
     >
@@ -38,14 +39,14 @@ const visible = ref<boolean>(false)
       <Column header="Latitude" bodyClass="text-center">
         <template #body="slotProps">
           <span>
-           {{slotProps.data.location.latitude}}
+           {{ slotProps.data.location.latitude }}
           </span>
         </template>
       </Column>
       <Column header="Longitude" bodyClass="text-center">
         <template #body="slotProps">
           <span>
-           {{slotProps.data.location.longitude}}
+           {{ slotProps.data.location.longitude }}
           </span>
         </template>
       </Column>
