@@ -41,6 +41,7 @@ async function handleDelete(id: number) {
       <Column field="id" header="ID" />
       <Column field="name" header="Name" />
       <Column field="description" header="Description" />
+      <Column field="price" header="Price" />
       <Column header="" bodyClass="text-center">
         <template #body="slotProps">
           <Button @click="handleDelete(slotProps.data.id)">
